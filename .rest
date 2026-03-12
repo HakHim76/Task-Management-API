@@ -1,0 +1,15 @@
+GET http://localhost:8080/tasks
+
+###
+POST http://localhost:8080/tasks
+Content-Type: application/json
+
+{
+  "title": "Finish API project",
+  "description": "Build and test all CRUD routes",
+  "status": "pending",
+  "priority": 2
+}
+
+###
+GET http://localhost:8080/tasks
