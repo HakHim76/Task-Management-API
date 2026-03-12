@@ -5,9 +5,7 @@ const app = express();
 const mongoose = require("mongoose");
 app.use(express.json());
 
-app.get("/", (req, res) => {
-  res.send("this is our homepage");
-});
+app.get("/", async (req, res) => {});
 
 const tasksRouter = require("./routes/tasks");
 app.use("/tasks", tasksRouter);
