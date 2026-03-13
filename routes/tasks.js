@@ -36,8 +36,8 @@ router.get("/:id", getTask, async (req, res) => {
 router.post("/", async (req, res) => {
   const task = new Task({
     title: req.body.title,
+    description: req.body.description,
     status: req.body.status,
-
     priority: req.body.priority,
   });
 

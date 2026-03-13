@@ -19,10 +19,9 @@ PATCH http://localhost:8080/tasks/69b3058bc727307cfbc121de
 Content-Type: application/json
 
 {
-  "title": "Finish and export label designs",
-  "description": "Design gig",
-  "status": "in progess",
-  "priority": 5
+ 
+  "status": "done"
+  
 }
 
 ###

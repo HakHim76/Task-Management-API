@@ -15,13 +15,13 @@ const PORT = process.env.PORT;
 async function startServer() {
   try {
     await mongoose.connect(process.env.DB_URL);
-    console.log("mongo up and running");
-
+    console.log("mongo up and running sir!!");
+    const message = `listening on port:${PORT}`;
     app.listen(PORT, () => {
-      console.log(`listening on ${PORT}`);
+      console.log(message);
     });
   } catch (err) {
-    console.log("mongo connection failed miserably:", err.message);
+    console.log("mongo conncection failed miserably", err.message);
     process.exit(1);
   }
 }
