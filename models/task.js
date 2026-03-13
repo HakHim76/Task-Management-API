@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-
 const taskSchema = new mongoose.Schema(
   {
     title: {
@@ -7,30 +6,53 @@ const taskSchema = new mongoose.Schema(
       required: true,
       trim: true,
     },
+
     description: {
       type: String,
-      required: true,
-      trim: true,
+      default: "",
     },
+
     status: {
       type: String,
-      required: true,
-      enum: ["pending", "in-progess", "done"],
+      enum: ["pending", "in-progress", "done"],
+      default: "pending",
     },
 
     priority: {
       type: Number,
-      required: true,
-      default: 1,
       min: 1,
       max: 5,
+      default: 3,
     },
-    // dueDate: {
-    //   type: Date,
-    //   required: true
-    // }
+
+    tags: {
+      type: [String],
+      default: [],
+    },
+
+    assignedTo: {
+      type: String,
+      default: null,
+    },
+
+    estimatedHours: {
+      type: Number,
+      min: 0,
+      default: 1,
+    },
+
+    completed: {
+      type: Boolean,
+      default: false,
+    },
+
+    dueDate: {
+      type: Date,
+    },
   },
-  { timestamps: true },
+  {
+    timestamps: true,
+  },
 );
 
 module.exports = mongoose.model("Task", taskSchema);

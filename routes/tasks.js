@@ -21,7 +21,7 @@ async function getTask(req, res, next) {
 //ALL TASKS
 router.get("/", async (req, res) => {
   try {
-    const tasks = await Task.find({});
+    const tasks = await Task.find({}).limit(10);
     res.status(200).json(tasks);
   } catch (err) {
     res.status(500).json({ msg: err.message });
