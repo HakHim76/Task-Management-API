@@ -34,16 +34,10 @@ router.get("/:id", getTask, async (req, res) => {
 });
 // CREATE A TASK
 router.post("/", async (req, res) => {
-  const task = new Task({
-    title: req.body.title,
-    description: req.body.description,
-    status: req.body.status,
-    priority: req.body.priority,
-  });
-
   try {
-    const newTask = await task.save();
-    res.status(201).json(newTask);
+    const task = await Task.create(req.body);
+
+    res.status(201).json(task);
   } catch (err) {
     res.status(400).json({ msg: err.message });
   }
@@ -51,19 +45,19 @@ router.post("/", async (req, res) => {
 
 // UPDATE A TASK
 router.patch("/:id", getTask, async (req, res) => {
-  if (req.body.title != null) {
-    res.task.title = req.body.title;
-  }
-  if (req.body.status != null) {
-    res.task.status = req.body.status;
-  }
-  if (req.body.priority != null) {
-    res.task.priority = req.body.priority;
-  }
-
   try {
-    const updatedTask = await res.task.save();
-    res.status(200).json(updatedTask);
+    const task = await Task.findByIdAndUpdate(req.params.id, req.body, {
+      new: true,
+      runValidators: true,
+    });
+
+    if (!task) {
+      return res.status(404).json({
+        msg: "Task not found",
+      });
+    }
+
+    res.status(200).json(task);
   } catch (err) {
     res.status(400).json({ msg: err.message });
   }

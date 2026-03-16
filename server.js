@@ -3,9 +3,8 @@ require("dotenv").config();
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
-app.use(express.json());
 
-app.get("/", async (req, res) => {});
+app.use(express.json());
 
 const tasksRouter = require("./routes/tasks");
 app.use("/tasks", tasksRouter);
